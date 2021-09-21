@@ -18,6 +18,8 @@ def get_db_info():
             "host": "localhost",
             "user": "root",
             "password": "sw3513",
+            "port": 3306,
+            "db": "imdbfixed",
             "cursorclass": pymysql.cursors.DictCursor
         }
 

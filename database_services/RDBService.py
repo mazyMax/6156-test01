@@ -28,3 +28,17 @@ def get_by_prefix(db_schema, table_name, column_name, value_prefix):
     conn.close()
 
     return res
+
+def get_by_template_db():
+    conn = _get_db_connection()
+    cur = conn.cursor()
+
+    sql = "select * from users"
+    print("SQL Statement = " + cur.mogrify(sql, None))
+
+    res = cur.execute(sql)
+    res = cur.fetchall()
+
+    conn.close()
+
+    return res

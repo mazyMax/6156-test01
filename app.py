@@ -3,6 +3,7 @@ import database_services.RDBService as d_service
 from flask_cors import CORS
 import json
 
+from application_services.UsersResource.user_service import UserResource
 from application_services.imdb_artists_resource import IMDBArtistResource
 
 app = Flask(__name__)
@@ -20,6 +21,12 @@ def get_artists_by_prefix(prefix):
     rsp = Response(json.dumps(res), status=200, content_type="application/json")
     return rsp
 
+
+@app.route('/users')
+def get_users():
+    res = UserResource.get_by_template()
+    rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+    return rsp
 
 @app.route('/<db_schema>/<table_name>/<column_name>/<prefix>')
 def get_by_prefix(db_schema, table_name, column_name, prefix):
